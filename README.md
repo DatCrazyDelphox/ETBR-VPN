@@ -1,16 +1,6 @@
 # ETBR-VPN
 Android VPN app based on OpenVPN library and fork of Cake-VPN.
 
-</br>
-<img height='450' width ='250' src="https://i.imgur.com/5GV1Y2L.gif" />
-</br></br>
-
-## Note
-
-I use free OpenVPN configuration file from this site https://www.vpngate.net/en/ </br>
-I am not sure how long it will work with the free ovpn file. It's better to update ovpn files with your own ovpn.
-</br></br>
-
 ## Instruction to update server list:
 1. Replace/add your .ovpn file with <b> assets/</b> directory .ovpn file
 2. Now go to MainActivity.class and find the "getServerList()" method there you have to update server information.
@@ -27,7 +17,7 @@ I am not sure how long it will work with the free ovpn file. It's better to upda
 ## License
 **Free Software!**
 
-This project and the uses VPN library "ICS OpenVPN" both are under GPLv2 License.
+This project, the uses of the VPN library "ICS OpenVPN" and the project its based on are all under GPLv2 License.
 
 > Make sure you understand the licenses of the code. OpenVPN for Android is GPL licensed.
 
