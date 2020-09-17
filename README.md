@@ -1,5 +1,5 @@
 # ETBR-VPN
-Android VPN app based on OpenVPN library and fork of Cake-VPN.
+Android VPN app fork of Cake-VPN which is based on OpenVPN library.
 - The main focus of this fork is to implement better functionality and major UI changes.
 - Be sure to check the original project at https://github.com/ashraf789/Cake-VPN
 
