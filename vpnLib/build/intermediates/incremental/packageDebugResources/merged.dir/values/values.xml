@@ -45,7 +45,6 @@
         <item>External Auth Provider</item>
     </string-array>
     <bool name="logSildersAlwaysVisible">false</bool>
-    <bool name="supportFileScheme">true</bool>
     <color name="accent">#FFA726</color>
     <color name="background_tab_pressed">#1AFFFFFF</color>
     <color name="dataIn">#ff0000</color>
@@ -65,9 +64,6 @@
     <dimen name="stdpadding">8dp</dimen>
     <dimen name="switchbar_pad">16dp</dimen>
     <dimen name="vpn_setting_padding">16dp</dimen>
-    <drawable name="ic_menu_close_clear_cancel">@android:drawable/ic_menu_close_clear_cancel</drawable>
-    <drawable name="ic_menu_pause">@android:drawable/ic_media_pause</drawable>
-    <drawable name="ic_menu_play">@android:drawable/ic_media_play</drawable>
     <plurals name="days_left">
         <item quantity="one">One day left</item>
         <item quantity="other">%d days left</item>
@@ -632,7 +628,7 @@
     <declare-styleable name="FileSelectLayout">
        <attr format="string|reference" name="fileTitle"/>
       <attr format="boolean" name="certificate"/>
-<!--     <attr name="taskid" format="integer" /> -->
+
        <attr format="boolean" name="showClear"/>
    </declare-styleable>
     <declare-styleable name="PagerSlidingTabStrip">

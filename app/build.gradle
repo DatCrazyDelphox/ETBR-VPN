@@ -5,15 +5,15 @@ android {
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 72
-        versionName "0.7-2"
+        versionCode 73
+        versionName "0.7-3"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         applicationId 'com.datcr.etbrvpn'
     }
     buildTypes {
         release {
             minifyEnabled true
-            shrinkResources true
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

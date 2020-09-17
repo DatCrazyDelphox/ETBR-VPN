@@ -330,7 +330,6 @@ int bool abc_action_bar_embed_tabs 0x0
 int bool abc_allow_stacked_button_bar 0x0
 int bool abc_config_actionMenuItemAllCaps 0x0
 int bool logSildersAlwaysVisible 0x0
-int bool supportFileScheme 0x0
 int color abc_background_cache_hint_selector_material_dark 0x0
 int color abc_background_cache_hint_selector_material_light 0x0
 int color abc_btn_colored_borderless_text_material 0x0
@@ -648,9 +647,6 @@ int drawable btn_radio_off_mtrl 0x0
 int drawable btn_radio_off_to_on_mtrl_animation 0x0
 int drawable btn_radio_on_mtrl 0x0
 int drawable btn_radio_on_to_off_mtrl_animation 0x0
-int drawable ic_menu_close_clear_cancel 0x0
-int drawable ic_menu_pause 0x0
-int drawable ic_menu_play 0x0
 int drawable ic_notification 0x0
 int drawable notification_action_background 0x0
 int drawable notification_bg 0x0
@@ -2264,4 +2260,3 @@ int[] styleable ViewStubCompat { 0x10100d0, 0x10100f3, 0x10100f2 }
 int styleable ViewStubCompat_android_id 0
 int styleable ViewStubCompat_android_inflatedId 1
 int styleable ViewStubCompat_android_layout 2
-int xml app_restrictions 0x0
