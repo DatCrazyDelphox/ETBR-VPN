@@ -1,5 +1,6 @@
 package com.datcr.etbrvpn;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -21,6 +22,7 @@ public class SharedPreference {
     private static final String SERVER_OVPN_USER = "server_ovpn_user";
     private static final String SERVER_OVPN_PASSWORD = "server_ovpn_password";
 
+    @SuppressLint("CommitPrefEdits")
     public SharedPreference(Context context) {
         this.mPreference = context.getSharedPreferences(APP_PREFS_NAME, Context.MODE_PRIVATE);
         this.mPrefEditor = mPreference.edit();
@@ -49,7 +51,7 @@ public class SharedPreference {
 
         return new Server(
                 mPreference.getString(SERVER_COUNTRY, "Canada"),
-                mPreference.getString(SERVER_FLAG, getImgURL(R.drawable.japan)),
+                mPreference.getString(SERVER_FLAG, getImgURL(R.drawable.canada)),
                 mPreference.getString(SERVER_OVPN, "HOSTMF.ovpn")
         );
     }
@@ -64,5 +66,9 @@ public class SharedPreference {
         String password = mPreference.getString(SERVER_OVPN_PASSWORD, null);
         binding.vPasswd.setText(password);
 
+    }
+    public void saveLogin() {
+        mPrefEditor.putString(SERVER_OVPN_USER, binding.vUsern.getText().toString());
+        mPrefEditor.putString(SERVER_OVPN_PASSWORD, binding.vPasswd.getText().toString());
     }
 }

@@ -17,14 +17,6 @@ public class Server {
         this.ovpn = ovpn;
     }
 
-    public Server(String country, String flagUrl, String ovpn, String ovpnUserName, String ovpnUserPassword) {
-        this.country = country;
-        this.flagUrl = flagUrl;
-        this.ovpn = ovpn;
-        this.ovpnUserName = ovpnUserName;
-        this.ovpnUserPassword = ovpnUserPassword;
-    }
-
     public String getCountry() {
         return country;
     }

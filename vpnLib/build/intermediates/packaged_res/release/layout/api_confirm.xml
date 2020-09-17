@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2011 The Android Open Source Project
+<?xml version="1.0" encoding="utf-8"?><!-- Copyright (C) 2011 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -16,45 +15,51 @@
 -->
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            tools:ignore="UseCompoundDrawables">
 
-        <LinearLayout android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="@android:dimen/app_icon_size"
+                android:layout_height="@android:dimen/app_icon_size"
+                android:contentDescription="@string/permission_icon_app"
+                android:paddingRight="5dp" />
+
+            <TextView
+                android:id="@+id/prompt"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                tools:ignore="UseCompoundDrawables"
-                android:gravity="center_vertical">
-
-            <ImageView android:id="@+id/icon"
-                    android:contentDescription="@string/permission_icon_app"
-                    android:layout_width="@android:dimen/app_icon_size"
-                    android:layout_height="@android:dimen/app_icon_size"
-                    android:paddingRight="5dp"/>
-
-            <TextView android:id="@+id/prompt"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"/>
+                android:textSize="18sp" />
         </LinearLayout>
 
-        <TextView android:id="@+id/warning"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:text="@string/remote_warning"
-                android:textSize="18sp"/>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:text="@string/remote_warning"
+            android:textSize="18sp" />
 
-        <CheckBox android:id="@+id/check"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/remote_trust"
-                android:textSize="20sp"
-                android:checked="false"/>
+        <CheckBox
+            android:id="@+id/check"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/remote_trust"
+            android:textSize="20sp" />
     </LinearLayout>
 </ScrollView>

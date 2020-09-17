@@ -2,7 +2,6 @@ package com.datcr.etbrvpn.view;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.VpnService;
@@ -19,13 +18,12 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import com.bumptech.glide.Glide;
 import com.datcr.etbrvpn.CheckInternetConnection;
+import com.datcr.etbrvpn.R;
 import com.datcr.etbrvpn.SharedPreference;
+import com.datcr.etbrvpn.databinding.FragmentMainBinding;
 import com.datcr.etbrvpn.interfaces.ChangeServer;
 import com.datcr.etbrvpn.model.Server;
-import com.datcr.etbrvpn.R;
-import com.datcr.etbrvpn.databinding.FragmentMainBinding;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -70,9 +68,6 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
         preference = new SharedPreference(getContext());
         server = preference.getServer();
 
-        // Update current selected server icon
-        updateCurrentServerIcon(server.getFlagUrl());
-
         connection = new CheckInternetConnection();
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter("connectionState"));
     }
@@ -108,18 +103,12 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
      * Show show disconnect confirm dialog
      */
     public void confirmDisconnect(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
         builder.setMessage(getActivity().getString(R.string.connection_close_confirm));
 
-        builder.setPositiveButton(getActivity().getString(R.string.yes), new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                stopVpn();
-            }
-        });
-        builder.setNegativeButton(getActivity().getString(R.string.no), new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // User cancelled the dialog
-            }
+        builder.setPositiveButton(getActivity().getString(R.string.yes), (dialog, id) -> stopVpn());
+        builder.setNegativeButton(getActivity().getString(R.string.no), (dialog, id) -> {
+            // User cancelled the dialog
         });
 
         // Create the AlertDialog
@@ -213,6 +202,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
 
         try {
             // .ovpn file
+            preference.saveLogin();
             String inputUser = binding.vUsern.getText().toString();
             String inputPasswd = binding.vPasswd.getText().toString();
             InputStream conf = getActivity().getAssets().open(server.getOvpn());
@@ -231,7 +221,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
             OpenVpnApi.startVpn(getContext(), config, server.getCountry(), inputUser, inputPasswd);
 
             // Update log
-            binding.logTv.setText("Connecting...");
+            binding.logTv.setText("Conectando...");
             vpnStart = true;
 
         } catch (IOException | RemoteException e) {
@@ -256,19 +246,24 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
                 vpnStart = true;// it will use after restart this activity
                 status("connected");
                 binding.logTv.setText("");
+                showToast("Conectado!");
                 break;
             case "WAIT":
-                binding.logTv.setText("waiting for server connection!!");
+                binding.logTv.setText("Esperando pelo Servidor...");
                 break;
             case "AUTH":
-                binding.logTv.setText("server authenticating!!");
+                binding.logTv.setText("Autenticando");
+                break;
+            case "AUTH_FAILED":
+                binding.logTv.setText("Login ou Senha Incorretos!");
+                showToast("Login ou Senha Incorretos!");
                 break;
             case "RECONNECTING":
                 status("connecting");
-                binding.logTv.setText("Reconnecting...");
+                binding.logTv.setText("Reconectando...");
                 break;
             case "NONETWORK":
-                binding.logTv.setText("No network connection");
+                binding.logTv.setText("Sem Internet");
                 break;
         }
 
@@ -282,22 +277,23 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
 
         if (status.equals("connect")) {
             binding.vpnBtn.setText(getContext().getString(R.string.connect));
+            binding.vpnBtn.setTextColor(getResources().getColor(R.color.colorWhite));
         } else if (status.equals("connecting")) {
             binding.vpnBtn.setText(getContext().getString(R.string.connecting));
+            binding.vpnBtn.setTextColor(getResources().getColor(R.color.amarelo));
         } else if (status.equals("connected")) {
-
             binding.vpnBtn.setText(getContext().getString(R.string.disconnect));
-
+            binding.vpnBtn.setTextColor(getResources().getColor(R.color.laranja));
         } else if (status.equals("tryDifferentServer")) {
 
             binding.vpnBtn.setBackgroundResource(R.drawable.button_connected);
             binding.vpnBtn.setText("Try Different\nServer");
         } else if (status.equals("loading")) {
             binding.vpnBtn.setBackgroundResource(R.drawable.button);
-            binding.vpnBtn.setText("Loading Server..");
+            binding.vpnBtn.setText("Carregando Servidor..");
         } else if (status.equals("invalidDevice")) {
             binding.vpnBtn.setBackgroundResource(R.drawable.button_connected);
-            binding.vpnBtn.setText("Invalid Device");
+            binding.vpnBtn.setText("Dispositivo Inválido");
         } else if (status.equals("authenticationCheck")) {
             binding.vpnBtn.setBackgroundResource(R.drawable.button_connecting);
             binding.vpnBtn.setText("Authentication \n Checking...");
@@ -336,6 +332,8 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
         }
     };
 
+
+
     /**
      * Update status UI
      * @param duration: running time
@@ -344,10 +342,10 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
      * @param byteOut: outgoing data
      */
     public void updateConnectionStatus(String duration, String lastPacketReceive, String byteIn, String byteOut) {
-        binding.durationTv.setText("Duration: " + duration);
-        binding.lastPacketReceiveTv.setText("Packet Received: " + lastPacketReceive + " second ago");
-        binding.byteInTv.setText("Bytes In: " + byteIn);
-        binding.byteOutTv.setText("Bytes Out: " + byteOut);
+        binding.durationTv.setText("Tempo: " + duration);
+        binding.lastPacketReceiveTv.setText("Comunicação: " + lastPacketReceive + " segundos atrás");
+        binding.byteInTv.setText("Recebido: " + byteIn);
+        binding.byteOutTv.setText("Enviado: " + byteOut);
     }
 
     /**
@@ -362,11 +360,6 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
      * VPN server country icon change
      * @param serverIcon: icon URL
      */
-    public void updateCurrentServerIcon(String serverIcon) {
-        Glide.with(getContext())
-                .load(serverIcon)
-                .into(binding.selectedServerIcon);
-    }
 
     /**
      * Change server when user select new server
@@ -375,7 +368,6 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
     @Override
     public void newServer(Server server) {
         this.server = server;
-        updateCurrentServerIcon(server.getFlagUrl());
 
         // Stop previous connection
         if (vpnStart) {

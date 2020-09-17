@@ -10,4 +10,5 @@
     <string name="connection_close_confirm">Gostaria de desligar a VPN atual?</string>
     <string name="yes">Sim</string>
     <string name="no">Não</string>
+    <string name="authing">Autenticando</string>
 </resources>

@@ -15,10 +15,10 @@
         android:textStyle="bold" />
 
     <ImageButton
-        android:layout_gravity="right"
         android:id="@+id/navbar_right"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="right"
         android:layout_marginRight="10dp"
         android:background="@drawable/svpn__country_flag" />
 

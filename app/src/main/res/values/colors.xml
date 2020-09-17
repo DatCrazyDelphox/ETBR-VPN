@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#1d34da</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorWhite">#ffffff</color>
-    <color name="rightNav">#032e63</color>
+    <color name="rightNav">#AA003371</color>
+    <color name="laranja">#F57C00</color>
+    <color name="amarelo">#FFC107</color>
 
 </resources>
