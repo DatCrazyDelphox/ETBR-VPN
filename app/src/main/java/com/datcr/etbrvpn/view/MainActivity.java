@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements NavItemClickListe
 
         servers.add(new Server("Canadá",
                 Utils.getImgURL(R.drawable.canada),
-                "HOSTMF.ovpn"
+                "Blaze.ovpn"
         ));
 
         return servers;
