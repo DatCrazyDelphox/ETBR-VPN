@@ -52,7 +52,7 @@ public class SharedPreference {
         return new Server(
                 mPreference.getString(SERVER_COUNTRY, "Canada"),
                 mPreference.getString(SERVER_FLAG, getImgURL(R.drawable.canada)),
-                mPreference.getString(SERVER_OVPN, "Blaze.ovpn")
+                mPreference.getString(SERVER_OVPN, "HOSTMF.ovpn")
         );
     }
     public void getUsern() {
