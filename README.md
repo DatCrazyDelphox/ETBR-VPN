@@ -1,5 +1,11 @@
 # ETBR-VPN
 Android VPN app based on OpenVPN library and fork of Cake-VPN.
+- The main focus of this fork is to implement better functionality and major UI changes.
+
+## New things:
+- The app now has support for user/password auth ovpns
+- The app had some major UI changes and will have even more
+- Some annoying bugs fixed
 
 ## Instruction to update server list:
 1. Replace/add your .ovpn file with <b> assets/</b> directory .ovpn file
