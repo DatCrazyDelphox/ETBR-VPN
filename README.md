@@ -8,7 +8,7 @@ Android VPN app fork of Cake-VPN which is based on OpenVPN library.
 - The app had some major UI changes and will have even more
 - Some annoying bugs fixed
 
-## Instruction to update server list:
+## Instructions for adding servers to the list:
 1. Replace/add your .ovpn file with <b> assets/</b> directory .ovpn file
 2. Now go to MainActivity.class and find the "getServerList()" method there you have to update server information.
 3. [!Optional] At Last go to SharedPreference.class and find the "getServer()" method there update default server information.
@@ -22,7 +22,7 @@ Android VPN app fork of Cake-VPN which is based on OpenVPN library.
 
 
 ## License
-**Free Software!**
+**This is Free Software!**
 
 This project, the uses of the VPN library "ICS OpenVPN" and the project this app is based on are all under GPLv2 License.
 
