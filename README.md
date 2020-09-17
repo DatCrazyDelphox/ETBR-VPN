@@ -1,5 +1,5 @@
-# Cake-VPN
-Android VPN app based on OpenVPN library.
+# ETBR-VPN
+Android VPN app based on OpenVPN library and fork of Cake-VPN.
 
 </br>
 <img height='450' width ='250' src="https://i.imgur.com/5GV1Y2L.gif" />
