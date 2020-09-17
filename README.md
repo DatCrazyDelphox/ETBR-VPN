@@ -22,3 +22,4 @@ This project, the uses of the VPN library "ICS OpenVPN" and the project its base
 > Make sure you understand the licenses of the code. OpenVPN for Android is GPL licensed.
 
 - see the [License File](LICENSE) for more details.
+- Be sure to check the original project at https://github.com/ashraf789/Cake-VPN
